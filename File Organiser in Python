@@ -1,0 +1,45 @@
+import os
+import shutil
+from pathlib import Path
+path=Path(r"C:\Users\dinak\Downloads")
+try:
+    os.chdir(path)
+    print("Path changed")    
+    (path / "PDF_files").mkdir(exist_ok=True)
+    (path / "Excel_files").mkdir(exist_ok=True)
+    (path / "PPT_files").mkdir(exist_ok=True)
+    (path / "WORD_files").mkdir(exist_ok=True)
+    pdfcount = 0
+    xlcount = 0
+    pptcount=0
+    docx=0
+
+    for dirpath,subdir,files in os.walk(path):
+        for file in files:
+            if Path(file).suffix.lower() == ".pdf":
+                shutil.copy(src=Path(dirpath)/file,dst=Path(dirpath)/Path("PDF_files"))
+                pdfcount+=1
+            elif Path(file).suffix.lower() == ".xlsx":
+                shutil.copy(src=Path(dirpath)/file,dst=Path(dirpath)/Path("Excel_files"))
+                xlcount+=1
+            elif Path(file).suffix.lower() == ".ppt":
+                shutil.copy(src=Path(dirpath)/file,dst=Path(dirpath)/Path("PPT_files"))
+                pptcount+=1
+            elif Path(file).suffix.lower() == ".docx":
+                shutil.copy(src=Path(dirpath)/file,dst=Path(dirpath)/Path("WORD_files"))
+                docx+=1
+            else:
+                print("NO FILES ARE FOUND")
+
+    print("PDF FILE COUNT:",pdfcount)
+    print("Excel COUNT:",xlcount)
+    print("PPT COUNT:",pptcount)
+    print("Word document count:",docx)
+
+
+except Exception as e:
+    print("Error:", e)
+
+
+
+    
