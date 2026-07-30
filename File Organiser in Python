@@ -1,7 +1,7 @@
 import os
 import shutil
 from pathlib import Path
-path=Path(r"#you downloades folder path goes here ")
+path=Path(r"#you unorganised folder path goes here ")
 try:
     os.chdir(path)
     print("Path changed")    
